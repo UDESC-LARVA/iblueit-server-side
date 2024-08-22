@@ -1,0 +1,2817 @@
+{
+	"info": {
+		"_postman_id": "55e77496-7e5a-42b3-889f-4c94823a6c94",
+		"name": "BlueApiFunc",
+		"description": "Essa API é responsável pelo Back-End, da plataforma I Blue It. Uma aplicação que visa a ser um gerenciador das consultas usando o ***Pitaco*** pelos Terapeutas.\n\n### Authentication\n\nÉ necessario autenticação na rota /api/login, para gerar o GameToken o token.\n\n### Error Codes\n\nCaso retorne algum erro 500 solicite uma issues em:  \n[https://github.com/unisocisec/Blue_It_BackEnd/issues](https://github.com/unisocisec/Blue_It_BackEnd/issues)\n\n**Definição de prefixos dos endpoints**\n\n*   Post: envia de dados para serem gravados no banco de dados.\n*   Get: busca os dados de acordo com os parâmetros incluídos na URL\n*   Update: realiza a atualização dos dados. Deve-se passar o mesmo modelo enviado para a mesma rota contendo o prefixo Send, mas desta vez, contendo o ID do modelo a ser atualizado.\n*   Delete: deleta os dados do paciente\n    \n\n**Observações**\n\n*   Os parâmetros na busca (GET) são encadeados, ou seja, os resultados têm que obedecer todos os parâmetros passados.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10306115"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Autenticação/Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"teste\",\n\t\"password\": \"teste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Permite gerar o GameToken de acesso para realizar requisições na API.\n\n### Parâmetros\n\n| Parâmetro | Descrição | Tipo | Obrigatório |\n| --- | --- | --- | --- |\n| username | E-mail do Usuário | texto(255) | Sim |\n| password | Senha do Usuário | texto(255) | Sim |"
+					},
+					"response": [
+						{
+							"name": "Autenticação/Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"teste\",\n\t\"password\": \"teste\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 00:08:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Authenticado com sucesso!.\",\n    \"data\": {\n        \"redirectUrl\": \"/\",\n        \"authTime\": \"2022-05-31T00:08:36.546Z\",\n        \"authExpirationTime\": \"2022-05-31T02:08:36.546Z\",\n        \"fullname\": \"teste\",\n        \"gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\",\n        \"userId\": \"626718621d13d321e083bc4f\",\n        \"role\": \"Administrator\",\n        \"pacientId\": \"\"\n    },\n    \"errors\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "Paciente",
+					"item": [
+						{
+							"name": "Paciente",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Token de permissão de acesso a API",
+										"key": "GameToken",
+										"type": "text",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId"
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								},
+								"description": "Permite visualizar as informações do professor."
+							},
+							"response": [
+								{
+									"name": "Paciente",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Token de permissão de acesso a API",
+												"key": "GameToken",
+												"type": "text",
+												"value": "0a377edf-9e39-427b-9426-ef87afb7287f"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/pacients/:pacientId",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"pacients",
+												":pacientId"
+											],
+											"variable": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 00:16:00 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": {\n        \"_id\": \"628ea5647209eca5e1fa1e66\",\n        \"name\": \"Xandao\",\n        \"pacientId\": \"ASDASDA\",\n        \"birthday\": \"2004-05-02T03:00:00.000Z\",\n        \"height\": 149,\n        \"weight\": 147,\n        \"sex\": \"Male\",\n        \"condition\": \"Healthy\",\n        \"capacitiesPitaco\": {\n            \"insPeakFlow\": 162,\n            \"insFlowDuration\": 17,\n            \"expPeakFlow\": 519,\n            \"expFlowDuration\": 17,\n            \"respiratoryRate\": 16\n        },\n        \"observations\": \"None\",\n        \"unlockedLevels\": 5,\n        \"accumulatedScore\": 31500,\n        \"playSessionsDone\": 4,\n        \"calibrationPitacoDone\": true,\n        \"calibrationManoDone\": true,\n        \"calibrationCintaDone\": true,\n        \"howToPlayDone\": true,\n        \"pitacoThreshold\": 7.5,\n        \"manoThreshold\": 7.5,\n        \"cintaThreshold\": 7.5,\n        \"ethnicity\": \"Pardo\",\n        \"_gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\",\n        \"created_at\": \"2020-05-26T23:50:04.390Z\",\n        \"updated_at\": \"2020-05-26T23:50:04.390Z\",\n        \"__v\": 0,\n        \"playSessions\": []\n    },\n    \"errors\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Minigames",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"type": "text",
+										"description": "Token de permissão de acesso a API"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId/minigames?minigameName=WaterGame&dataIni=05-10-2000&dataFim=06-10-2050&devices=Pitaco&limit=10&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId",
+										"minigames"
+									],
+									"query": [
+										{
+											"key": "minigameName",
+											"value": "WaterGame",
+											"description": "Nome do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: CakeGame | WaterGame | BirdGame"
+										},
+										{
+											"key": "dataIni",
+											"value": "05-10-2000",
+											"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+										},
+										{
+											"key": "dataFim",
+											"value": "06-10-2050",
+											"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+										},
+										{
+											"key": "devices",
+											"value": "Pitaco",
+											"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Minigames",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+												"type": "text",
+												"description": "Token de permissão de acesso a API"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/pacients/:pacientId/minigames?minigameName=WaterGame&dataIni=05-10-2000&dataFim=06-10-2050&devices=Pitaco&limit=10&sort=asc&skip=0",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"pacients",
+												":pacientId",
+												"minigames"
+											],
+											"query": [
+												{
+													"key": "minigameName",
+													"value": "WaterGame",
+													"description": "Nome do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: CakeGame | WaterGame | BirdGame"
+												},
+												{
+													"key": "dataIni",
+													"value": "05-10-2000",
+													"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+												},
+												{
+													"key": "dataFim",
+													"value": "06-10-2050",
+													"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+												},
+												{
+													"key": "devices",
+													"value": "Pitaco",
+													"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+												},
+												{
+													"key": "limit",
+													"value": "10",
+													"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+												},
+												{
+													"key": "sort",
+													"value": "asc",
+													"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+												},
+												{
+													"key": "skip",
+													"value": "0",
+													"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+												}
+											],
+											"variable": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 00:28:57 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"devices\": [\n                \"Pitaco\"\n            ],\n            \"_id\": \"6295613ee888a714b86259e6\",\n            \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n            \"minigameName\": \"WaterGame\",\n            \"respiratoryExercise\": \"InspiratoryPeak\",\n            \"flowDataRounds\": [\n                {\n                    \"_id\": \"6295613ee888a714b86259e7\",\n                    \"minigameRound\": 1,\n                    \"roundScore\": 2,\n                    \"roundFlowScore\": 152,\n                    \"flowDataDevicesId\": \"6295613ce888a714b86259d6\"\n                },\n                {\n                    \"_id\": \"6295613ee888a714b86259e8\",\n                    \"minigameRound\": 2,\n                    \"roundScore\": 2,\n                    \"roundFlowScore\": 87,\n                    \"flowDataDevicesId\": \"6295613de888a714b86259db\"\n                },\n                {\n                    \"_id\": \"6295613ee888a714b86259e9\",\n                    \"minigameRound\": 3,\n                    \"roundScore\": 1,\n                    \"roundFlowScore\": 91,\n                    \"flowDataDevicesId\": \"6295613ee888a714b86259e0\"\n                }\n            ],\n            \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n            \"created_at\": \"2022-05-31T00:28:46.516Z\",\n            \"updatedAt\": \"2022-05-31T00:28:46.516Z\",\n            \"__v\": 0\n        }\n    ],\n    \"errors\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Plataformas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId/plataforms?phase=1&level=1&dataIni=05-10-2000&dataFim=06-10-2050&devices=Pitaco&limit=10&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId",
+										"plataforms"
+									],
+									"query": [
+										{
+											"key": "phase",
+											"value": "1",
+											"description": "Fase da plataforma [NÃO OBRIGATÓRIO]. Valores Validos: 1 a 4"
+										},
+										{
+											"key": "level",
+											"value": "1",
+											"description": "Level da Plataforma [NÃO OBRIGATÓRIO]. Valores Validos: 1 a ∞"
+										},
+										{
+											"key": "dataIni",
+											"value": "05-10-2000",
+											"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+										},
+										{
+											"key": "dataFim",
+											"value": "06-10-2050",
+											"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+										},
+										{
+											"key": "devices",
+											"value": "Pitaco",
+											"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Plataformas",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+												"type": "text",
+												"description": "Token de permissão de acesso a API"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/pacients/:pacientId/plataforms?phase=1&level=1&dataIni=05-10-2000&dataFim=06-10-2050&devices=Pitaco&limit=10&sort=asc&skip=0",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"pacients",
+												":pacientId",
+												"plataforms"
+											],
+											"query": [
+												{
+													"key": "phase",
+													"value": "1",
+													"description": "Fase da plataforma [NÃO OBRIGATÓRIO]. Valores Validos: 1 a 4"
+												},
+												{
+													"key": "level",
+													"value": "1",
+													"description": "Level da Plataforma [NÃO OBRIGATÓRIO]. Valores Validos: 1 a ∞"
+												},
+												{
+													"key": "dataIni",
+													"value": "05-10-2000",
+													"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+												},
+												{
+													"key": "dataFim",
+													"value": "06-10-2050",
+													"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+												},
+												{
+													"key": "devices",
+													"value": "Pitaco",
+													"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+												},
+												{
+													"key": "limit",
+													"value": "10",
+													"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+												},
+												{
+													"key": "sort",
+													"value": "asc",
+													"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+												},
+												{
+													"key": "skip",
+													"value": "0",
+													"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+												}
+											],
+											"variable": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 00:53:46 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n  \"success\": true,\r\n  \"authorized\": true,\r\n  \"message\": \"Consulta realizada com sucesso.\",\r\n  \"data\": [\r\n    {\r\n      \"devices\": [],\r\n      \"_id\": \"628ea6077209eca5e1fa1e6d\",\r\n      \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n      \"playStart\": \"2020-02-23T12:01:10.000Z\",\r\n      \"playFinish\": \"2020-02-23T12:01:10.000Z\",\r\n      \"duration\": 179,\r\n      \"result\": 1,\r\n      \"stageId\": 1,\r\n      \"phase\": 1,\r\n      \"level\": 1,\r\n      \"relaxTimeSpawned\": 1,\r\n      \"maxScore\": 1,\r\n      \"scoreRatio\": 1,\r\n      \"targetsSpawned\": 1,\r\n      \"TargetsSuccess\": 1,\r\n      \"TargetsExpSuccess\": 1,\r\n      \"TargetsFails\": 1,\r\n      \"TargetsInsFail\": 1,\r\n      \"TargetsExpFail\": 1,\r\n      \"ObstaclesSpawned\": 1,\r\n      \"ObstaclesSuccess\": 1,\r\n      \"ObstaclesInsSuccess\": 1,\r\n      \"ObstaclesExpSuccess\": 1,\r\n      \"ObstaclesFail\": 1,\r\n      \"ObstaclesInsFail\": 1,\r\n      \"ObstaclesExpFail\": 1,\r\n      \"PlayerHp\": 1,\r\n      \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\r\n      \"flowDataDevicesId\": \"5ecdb3d78602371820a5b1f3\",\r\n      \"created_at\": \"2020-05-27T00:27:03.370Z\",\r\n      \"updatedAt\": \"2020-05-27T00:27:03.370Z\",\r\n      \"__v\": 0,\r\n      \"flowDataDevicesValues\": []\r\n    },\r\n    {\r\n      \"devices\": [\r\n        \"Pitaco\"\r\n      ],\r\n      \"_id\": \"6295647fe888a714b86259f7\",\r\n      \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n      \"playStart\": \"2020-02-23T12:01:10.000Z\",\r\n      \"playFinish\": \"2020-02-23T12:01:10.000Z\",\r\n      \"duration\": 100,\r\n      \"result\": 1,\r\n      \"stageId\": 1,\r\n      \"phase\": 1,\r\n      \"level\": 1,\r\n      \"relaxTimeSpawned\": 1,\r\n      \"maxScore\": 1,\r\n      \"scoreRatio\": 1,\r\n      \"targetsSpawned\": 1,\r\n      \"TargetsSuccess\": 1,\r\n      \"TargetsExpSuccess\": 1,\r\n      \"TargetsFails\": 1,\r\n      \"TargetsInsFail\": 1,\r\n      \"TargetsExpFail\": 1,\r\n      \"ObstaclesSpawned\": 1,\r\n      \"ObstaclesSuccess\": 1,\r\n      \"ObstaclesInsSuccess\": 1,\r\n      \"ObstaclesExpSuccess\": 1,\r\n      \"ObstaclesFail\": 1,\r\n      \"ObstaclesInsFail\": 1,\r\n      \"ObstaclesExpFail\": 1,\r\n      \"PlayerHp\": 1,\r\n      \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\r\n      \"flowDataDevicesValues\": [\r\n        {\r\n          \"_id\": \"6295647fe888a714b86259f8\",\r\n          \"deviceName\": \"Pitaco\",\r\n          \"maxFlowValue\": 120,\r\n          \"minFlowValue\": 100,\r\n          \"meanFlowValue\": 110\r\n        }\r\n      ],\r\n      \"flowDataDevicesId\": \"6295647fe888a714b86259f2\",\r\n      \"created_at\": \"2022-05-31T00:42:39.911Z\",\r\n      \"updatedAt\": \"2022-05-31T00:42:39.911Z\",\r\n      \"__v\": 0\r\n    }\r\n  ],\r\n  \"errors\": null\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Calibrações",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId/calibrations?gameDevice=Pitaco&calibrationExercise=InspiratoryPeak&dataIni=05-10-2000&dataFim=06-10-2050&limit=10&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId",
+										"calibrations"
+									],
+									"query": [
+										{
+											"key": "gameDevice",
+											"value": "Pitaco",
+											"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+										},
+										{
+											"key": "calibrationExercise",
+											"value": "InspiratoryPeak",
+											"description": "Tipo do Exercício [NÃO OBRIGATÓRIO]. Valores Validos: InspiratoryPeak | ExpiratoryPeak"
+										},
+										{
+											"key": "dataIni",
+											"value": "05-10-2000",
+											"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+										},
+										{
+											"key": "dataFim",
+											"value": "06-10-2050",
+											"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Calibrações",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+												"description": "Token de permissão de acesso a API",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/pacients/:pacientId/calibrations?gameDevice=Pitaco&calibrationExercise=InspiratoryPeak&dataIni=05-10-2000&dataFim=06-10-2050&limit=10&sort=asc&skip=0",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"pacients",
+												":pacientId",
+												"calibrations"
+											],
+											"query": [
+												{
+													"key": "gameDevice",
+													"value": "Pitaco",
+													"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+												},
+												{
+													"key": "calibrationExercise",
+													"value": "InspiratoryPeak",
+													"description": "Tipo do Exercício [NÃO OBRIGATÓRIO]. Valores Validos: InspiratoryPeak | ExpiratoryPeak"
+												},
+												{
+													"key": "dataIni",
+													"value": "05-10-2000",
+													"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+												},
+												{
+													"key": "dataFim",
+													"value": "06-10-2050",
+													"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+												},
+												{
+													"key": "limit",
+													"value": "10",
+													"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+												},
+												{
+													"key": "sort",
+													"value": "asc",
+													"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+												},
+												{
+													"key": "skip",
+													"value": "0",
+													"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+												}
+											],
+											"variable": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:02:55 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n  \"success\": true,\r\n  \"authorized\": true,\r\n  \"message\": \"Consulta realizada com sucesso.\",\r\n  \"data\": [\r\n    {\r\n      \"_id\": \"6295685fe888a714b86259f9\",\r\n      \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n      \"gameDevice\": \"Pitaco\",\r\n      \"calibrationValue\": -500,\r\n      \"calibrationExercise\": \"InspiratoryPeak\",\r\n      \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\r\n      \"created_at\": \"2022-05-31T00:59:11.301Z\",\r\n      \"updatedAt\": \"2022-05-31T00:59:11.301Z\",\r\n      \"__v\": 0,\r\n      \"id\": \"6295685fe888a714b86259f9\"\r\n    }\r\n  ],\r\n  \"errors\": null\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Conta",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"type": "text",
+										"description": "Token de permissão de acesso a API"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId/account",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId",
+										"account"
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								},
+								"description": "Busca a conta de acesso ao sistema do paciente com o ID pesquisado"
+							},
+							"response": [
+								{
+									"name": "Conta",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+												"type": "text",
+												"description": "Token de permissão de acesso a API"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/pacients/:pacientId/account",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"pacients",
+												":pacientId",
+												"account"
+											],
+											"variable": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:17:21 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": {\n        \"_id\": \"62956c98e888a714b86259fa\",\n        \"username\": \"xandao\",\n        \"password\": \"xandao\",\n        \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n        \"id\": \"62956c98e888a714b86259fa\"\n    },\n    \"errors\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Estatísticas Plataforma",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"type": "text",
+										"description": "Token de permissão de acesso a API"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId/plataforms/statistics?dataIni=05-10-2000&dataFim=06-10-2050&sort=asc&devices=Pitaco",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId",
+										"plataforms",
+										"statistics"
+									],
+									"query": [
+										{
+											"key": "dataIni",
+											"value": "05-10-2000",
+											"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+										},
+										{
+											"key": "dataFim",
+											"value": "06-10-2050",
+											"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "devices",
+											"value": "Pitaco",
+											"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+										}
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Estatísticas Plataforma",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+												"type": "text",
+												"description": "Token de permissão de acesso a API"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/pacients/:pacientId/plataforms/statistics?dataIni=05-10-2000&dataFim=06-10-2050&sort=asc&devices=Pitaco",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"pacients",
+												":pacientId",
+												"plataforms",
+												"statistics"
+											],
+											"query": [
+												{
+													"key": "dataIni",
+													"value": "05-10-2000",
+													"description": "Data Inicio do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre menor que o dataFim)"
+												},
+												{
+													"key": "dataFim",
+													"value": "06-10-2050",
+													"description": "Data Final do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: DD-MM-YYYY ( Sempre maior que o dataIni)"
+												},
+												{
+													"key": "sort",
+													"value": "asc",
+													"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+												},
+												{
+													"key": "devices",
+													"value": "Pitaco",
+													"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+												}
+											],
+											"variable": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:22:21 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"created_at\": \"27/05/2020\",\n            \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n            \"flowDataDevicesId\": \"5ecdb3d78602371820a5b1f3\",\n            \"deviceName\": \"Pitaco\",\n            \"playStart\": \"2020-02-23T12:01:10.000Z\",\n            \"playFinish\": \"2020-02-23T12:01:10.000Z\",\n            \"duration\": 179,\n            \"result\": 1,\n            \"stageId\": 1,\n            \"phase\": 1,\n            \"level\": 1,\n            \"relaxTimeSpawned\": 1,\n            \"maxScore\": 1,\n            \"scoreRatio\": 1,\n            \"targetsSpawned\": 1,\n            \"targetsExpSuccess\": 1,\n            \"targetsFails\": 1,\n            \"targetsInsFail\": 1,\n            \"targetsExpFail\": 1,\n            \"obstaclesSpawned\": 1,\n            \"obstaclesSuccess\": 1,\n            \"obstaclesFail\": 1,\n            \"obstaclesInsSuccess\": 1,\n            \"obstaclesExpSuccess\": 1,\n            \"obstaclesInsFail\": 1,\n            \"obstaclesExpFail\": 1,\n            \"playerHp\": 1,\n            \"maxInsFlow\": -288,\n            \"maxExpFlow\": 300\n        },\n        {\n            \"created_at\": \"31/05/2022\",\n            \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n            \"flowDataDevicesId\": \"6295647fe888a714b86259f2\",\n            \"deviceName\": \"Pitaco\",\n            \"playStart\": \"2020-02-23T12:01:10.000Z\",\n            \"playFinish\": \"2020-02-23T12:01:10.000Z\",\n            \"duration\": 100,\n            \"result\": 1,\n            \"stageId\": 1,\n            \"phase\": 1,\n            \"level\": 1,\n            \"relaxTimeSpawned\": 1,\n            \"maxScore\": 1,\n            \"scoreRatio\": 1,\n            \"targetsSpawned\": 1,\n            \"targetsExpSuccess\": 1,\n            \"targetsFails\": 1,\n            \"targetsInsFail\": 1,\n            \"targetsExpFail\": 1,\n            \"obstaclesSpawned\": 1,\n            \"obstaclesSuccess\": 1,\n            \"obstaclesFail\": 1,\n            \"obstaclesInsSuccess\": 1,\n            \"obstaclesExpSuccess\": 1,\n            \"obstaclesInsFail\": 1,\n            \"obstaclesExpFail\": 1,\n            \"playerHp\": 1,\n            \"maxInsFlow\": 100,\n            \"maxExpFlow\": 120\n        }\n    ],\n    \"errors\": null\n}"
+								}
+							]
+						}
+					],
+					"description": "Consultas Relacionados ao Paciente",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Configurações de Jogo",
+					"item": [
+						{
+							"name": "Parametros de Configurações do Jogo Recomendado",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/gameparameter?pacientId=626d8e0f192fcf413027dda9",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"gameparameter"
+									],
+									"query": [
+										{
+											"key": "pacientId",
+											"value": "626d8e0f192fcf413027dda9",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Parametros de Configurações do Jogo Recomendado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+												"description": "Token de permissão de acesso a API",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/gameparameter?pacientId=626d8e0f192fcf413027dda9",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"gameparameter"
+											],
+											"query": [
+												{
+													"key": "pacientId",
+													"value": "626d8e0f192fcf413027dda9",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:23:58 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"_id\": \"6294232ecd2d2c31a08a207b\",\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 1,\n            \"pacientId\": \"626d8e0f192fcf413027dda9\",\n            \"ObjectSpeedFactor\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"HeightIncrement\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"HeightUpThreshold\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"HeightDownThreshold\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"SizeIncrement\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"SizeUpThreshold\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"SizeDownThreshold\": {\n                \"$numberDecimal\": \"0.3\"\n            },\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"6294232ecd2d2c31a08a207c\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"6294232ecd2d2c31a08a207d\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"created_at\": \"2022-05-30T01:51:42.089Z\",\n            \"updated_at\": \"2022-05-30T01:51:42.089Z\",\n            \"__v\": 0\n        }\n    ],\n    \"errors\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Buscar os Dados dos Pacientes mais Parecidos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/gameParameterNeighborInformation?pacientId=628ea5647209eca5e1fa1e66",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"gameParameterNeighborInformation"
+									],
+									"query": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Buscar os Dados dos Pacientes mais Parecidos",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+												"description": "Token de permissão de acesso a API",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/gameParameterNeighborInformation?pacientId=628ea5647209eca5e1fa1e66",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"gameParameterNeighborInformation"
+											],
+											"query": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:25:18 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 4,\n            \"pacientId\": \"5ecdab2c7ef1d60c985f142c\",\n            \"pacientName\": \"Otávio Fagundes\",\n            \"ObjectSpeedFactor\": 0.7,\n            \"HeightIncrement\": 0.7,\n            \"HeightUpThreshold\": 0.7,\n            \"HeightDownThreshold\": 0.7,\n            \"SizeIncrement\": 0.7,\n            \"SizeUpThreshold\": 0.7,\n            \"SizeDownThreshold\": 0.7,\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"62942234cd2d2c31a08a2070\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"62942234cd2d2c31a08a2071\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"isAVG\": false\n        },\n        {\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 4,\n            \"pacientId\": \"5ecdaba67ef1d60c985f142d\",\n            \"pacientName\": \"Mauricio Faria\",\n            \"ObjectSpeedFactor\": 0.6,\n            \"HeightIncrement\": 0.6,\n            \"HeightUpThreshold\": 0.6,\n            \"HeightDownThreshold\": 0.6,\n            \"SizeIncrement\": 0.6,\n            \"SizeUpThreshold\": 0.6,\n            \"SizeDownThreshold\": 0.6,\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"629422b4cd2d2c31a08a2073\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"629422b4cd2d2c31a08a2074\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"isAVG\": false\n        },\n        {\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 4,\n            \"pacientId\": \"5ef65864c5890811745b31db\",\n            \"pacientName\": \"Paciente Teste Validação\",\n            \"ObjectSpeedFactor\": 0.5,\n            \"HeightIncrement\": 0.5,\n            \"HeightUpThreshold\": 0.5,\n            \"HeightDownThreshold\": 0.5,\n            \"SizeIncrement\": 0.5,\n            \"SizeUpThreshold\": 0.5,\n            \"SizeDownThreshold\": 0.5,\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"629422fbcd2d2c31a08a2076\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"629422fbcd2d2c31a08a2077\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"isAVG\": false\n        },\n        {\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 4,\n            \"pacientId\": \"627ffdd16411086798654f61\",\n            \"pacientName\": \"Teste B\",\n            \"ObjectSpeedFactor\": 0.4,\n            \"HeightIncrement\": 0.4,\n            \"HeightUpThreshold\": 0.4,\n            \"HeightDownThreshold\": 0.4,\n            \"SizeIncrement\": 0.4,\n            \"SizeUpThreshold\": 0.4,\n            \"SizeDownThreshold\": 0.4,\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"62942314cd2d2c31a08a2079\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"62942314cd2d2c31a08a207a\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"isAVG\": false\n        },\n        {\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 4,\n            \"pacientId\": \"626d8e0f192fcf413027dda9\",\n            \"pacientName\": \"gabi\",\n            \"ObjectSpeedFactor\": 0.3,\n            \"HeightIncrement\": 0.3,\n            \"HeightUpThreshold\": 0.3,\n            \"HeightDownThreshold\": 0.3,\n            \"SizeIncrement\": 0.3,\n            \"SizeUpThreshold\": 0.3,\n            \"SizeDownThreshold\": 0.3,\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"6294232ecd2d2c31a08a207c\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"6294232ecd2d2c31a08a207d\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"isAVG\": false\n        },\n        {\n            \"stageId\": 1,\n            \"phase\": 4,\n            \"level\": 4,\n            \"pacientId\": null,\n            \"pacientName\": null,\n            \"ObjectSpeedFactor\": 0.4999999999999999,\n            \"HeightIncrement\": 0.4999999999999999,\n            \"HeightUpThreshold\": 0.4999999999999999,\n            \"HeightDownThreshold\": 0.4999999999999999,\n            \"SizeIncrement\": 0.4999999999999999,\n            \"SizeUpThreshold\": 0.4999999999999999,\n            \"SizeDownThreshold\": 0.4999999999999999,\n            \"Loops\": 1,\n            \"gameScript\": [\n                {\n                    \"_id\": \"62942234cd2d2c31a08a2070\",\n                    \"ObjectType\": \"Target\",\n                    \"DifficultyFactor\": \"0.2\",\n                    \"PositionYFactor\": \"1\",\n                    \"PositionXSpacing\": \"2\"\n                },\n                {\n                    \"_id\": \"62942234cd2d2c31a08a2071\",\n                    \"ObjectType\": \"Relax\",\n                    \"DifficultyFactor\": \"0\",\n                    \"PositionYFactor\": \"0\",\n                    \"PositionXSpacing\": \"1\"\n                }\n            ],\n            \"isAVG\": true\n        }\n    ],\n    \"errors\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "Buscar os Pacientes Ids Mais Parecido",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_API_IA}}/neighborsByPacient?pacientId=628ea5647209eca5e1fa1e66",
+									"host": [
+										"{{URL_API_IA}}"
+									],
+									"path": [
+										"neighborsByPacient"
+									],
+									"query": [
+										{
+											"key": "pacientId",
+											"value": "628ea5647209eca5e1fa1e66",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Buscar os Pacientes Ids Mais Parecido",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "GameToken",
+												"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+												"description": "Token de permissão de acesso a API",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "text"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_API_IA}}/neighborsByPacient?pacientId=628ea5647209eca5e1fa1e66",
+											"host": [
+												"{{URL_API_IA}}"
+											],
+											"path": [
+												"neighborsByPacient"
+											],
+											"query": [
+												{
+													"key": "pacientId",
+													"value": "628ea5647209eca5e1fa1e66",
+													"description": "Id do Paciente [OBRIGATÓRIO]"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/2.1.2 Python/3.10.4"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:26:38 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "441"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"neighborsPacientReturn\": [\n        {\n            \"pacientId\": \"5ecdab2c7ef1d60c985f142c\",\n            \"pacientName\": \"Otávio Fagundes\"\n        },\n        {\n            \"pacientId\": \"5ecdaba67ef1d60c985f142d\",\n            \"pacientName\": \"Mauricio Faria\"\n        },\n        {\n            \"pacientId\": \"5ef65864c5890811745b31db\",\n            \"pacientName\": \"Paciente Teste Validação\"\n        },\n        {\n            \"pacientId\": \"627ffdd16411086798654f61\",\n            \"pacientName\": \"Teste B\"\n        },\n        {\n            \"pacientId\": \"626d8e0f192fcf413027dda9\",\n            \"pacientName\": \"gabi\"\n        }\n    ],\n    \"pacientTestId\": \"628ea5647209eca5e1fa1e66\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Calibrações",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "GameToken",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/calibrations?calibrationId=6295685fe888a714b86259f9&gameDevice=Pitaco&calibrationExercise=InspiratoryPeak&limit=1&sort=asc&skip=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calibrations"
+							],
+							"query": [
+								{
+									"key": "calibrationId",
+									"value": "6295685fe888a714b86259f9",
+									"description": "ID do Registro da Calibração [NÃO OBRIGATÓRIO]"
+								},
+								{
+									"key": "gameDevice",
+									"value": "Pitaco",
+									"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+								},
+								{
+									"key": "calibrationExercise",
+									"value": "InspiratoryPeak",
+									"description": "Tipo do Exercício [NÃO OBRIGATÓRIO]. Valores Validos: InspiratoryPeak | ExpiratoryPeak"
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								},
+								{
+									"key": "sort",
+									"value": "asc",
+									"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+								},
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Calibrações",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/calibrations?calibrationId=6295685fe888a714b86259f9&gameDevice=Pitaco&calibrationExercise=InspiratoryPeak&limit=1&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"calibrations"
+									],
+									"query": [
+										{
+											"key": "calibrationId",
+											"value": "6295685fe888a714b86259f9",
+											"description": "ID do Registro da Calibração [NÃO OBRIGATÓRIO]"
+										},
+										{
+											"key": "gameDevice",
+											"value": "Pitaco",
+											"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+										},
+										{
+											"key": "calibrationExercise",
+											"value": "InspiratoryPeak",
+											"description": "Tipo do Exercício [NÃO OBRIGATÓRIO]. Valores Validos: InspiratoryPeak | ExpiratoryPeak"
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 01:55:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"_id\": \"6295685fe888a714b86259f9\",\n            \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n            \"gameDevice\": \"Pitaco\",\n            \"calibrationValue\": -500,\n            \"calibrationExercise\": \"InspiratoryPeak\",\n            \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n            \"created_at\": \"2022-05-31T00:59:11.301Z\",\n            \"updatedAt\": \"2022-05-31T00:59:11.301Z\",\n            \"__v\": 0,\n            \"id\": \"6295685fe888a714b86259f9\"\n        }\n    ],\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Resumos Minigame",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Token de permissão de acesso a API",
+								"key": "GameToken",
+								"type": "text",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/minigames?minigameOverviewId=6295613ee888a714b86259e6&devices=Pitaco&minigameName=WaterGame&limit=10&sort=asc&skip=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"minigames"
+							],
+							"query": [
+								{
+									"key": "minigameOverviewId",
+									"value": "6295613ee888a714b86259e6",
+									"description": "ID do Registro do Resumo do Minigame [NÃO OBRIGATÓRIO]"
+								},
+								{
+									"key": "devices",
+									"value": "Pitaco",
+									"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+								},
+								{
+									"key": "minigameName",
+									"value": "WaterGame",
+									"description": "Nome do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: CakeGame | WaterGame | BirdGame"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								},
+								{
+									"key": "sort",
+									"value": "asc",
+									"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+								},
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resumos Minigame",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Token de permissão de acesso a API",
+										"key": "GameToken",
+										"type": "text",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/minigames?minigameOverviewId=6295613ee888a714b86259e6&devices=Pitaco&minigameName=WaterGame&limit=10&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"minigames"
+									],
+									"query": [
+										{
+											"key": "minigameOverviewId",
+											"value": "6295613ee888a714b86259e6",
+											"description": "ID do Registro do Resumo do Minigame [NÃO OBRIGATÓRIO]"
+										},
+										{
+											"key": "devices",
+											"value": "Pitaco",
+											"description": "Nome do dispositivo [NÃO OBRIGATÓRIO]. Valores Validos: Pitaco | Mano"
+										},
+										{
+											"key": "minigameName",
+											"value": "WaterGame",
+											"description": "Nome do Jogo [NÃO OBRIGATÓRIO]. Valores Validos: CakeGame | WaterGame | BirdGame"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:02:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"devices\": [\n                \"Pitaco\"\n            ],\n            \"_id\": \"6295613ee888a714b86259e6\",\n            \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n            \"minigameName\": \"WaterGame\",\n            \"respiratoryExercise\": \"InspiratoryPeak\",\n            \"flowDataRounds\": [\n                {\n                    \"_id\": \"6295613ee888a714b86259e7\",\n                    \"minigameRound\": 1,\n                    \"roundScore\": 2,\n                    \"roundFlowScore\": 152,\n                    \"flowDataDevicesId\": \"6295613ce888a714b86259d6\"\n                },\n                {\n                    \"_id\": \"6295613ee888a714b86259e8\",\n                    \"minigameRound\": 2,\n                    \"roundScore\": 2,\n                    \"roundFlowScore\": 87,\n                    \"flowDataDevicesId\": \"6295613de888a714b86259db\"\n                },\n                {\n                    \"_id\": \"6295613ee888a714b86259e9\",\n                    \"minigameRound\": 3,\n                    \"roundScore\": 1,\n                    \"roundFlowScore\": 91,\n                    \"flowDataDevicesId\": \"6295613ee888a714b86259e0\"\n                }\n            ],\n            \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n            \"created_at\": \"2022-05-31T00:28:46.516Z\",\n            \"updatedAt\": \"2022-05-31T00:28:46.516Z\",\n            \"__v\": 0\n        }\n    ],\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Resumos Plataforma",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "GameToken",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/plataforms?plataformOverviewId=628ea6077209eca5e1fa1e6d&limit=10&sort=asc&skip=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"plataforms"
+							],
+							"query": [
+								{
+									"key": "plataformOverviewId",
+									"value": "628ea6077209eca5e1fa1e6d",
+									"description": "ID do Registro do Resumo da Plataforma [NÃO OBRIGATÓRIO]"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								},
+								{
+									"key": "sort",
+									"value": "asc",
+									"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+								},
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resumos Plataforma",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/plataforms?plataformOverviewId=628ea6077209eca5e1fa1e6d&limit=10&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"plataforms"
+									],
+									"query": [
+										{
+											"key": "plataformOverviewId",
+											"value": "628ea6077209eca5e1fa1e6d",
+											"description": "ID do Registro do Resumo da Plataforma [NÃO OBRIGATÓRIO]"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:06:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"authorized\": false,\n    \"message\": \"Parâmetros de consulta inexistentes.\",\n    \"data\": [\n        {\n            \"devices\": [],\n            \"_id\": \"628ea6077209eca5e1fa1e6d\",\n            \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n            \"playStart\": \"2020-02-23T12:01:10.000Z\",\n            \"playFinish\": \"2020-02-23T12:01:10.000Z\",\n            \"duration\": 179,\n            \"result\": 1,\n            \"stageId\": 1,\n            \"phase\": 1,\n            \"level\": 1,\n            \"relaxTimeSpawned\": 1,\n            \"maxScore\": 1,\n            \"scoreRatio\": 1,\n            \"targetsSpawned\": 1,\n            \"TargetsSuccess\": 1,\n            \"TargetsExpSuccess\": 1,\n            \"TargetsFails\": 1,\n            \"TargetsInsFail\": 1,\n            \"TargetsExpFail\": 1,\n            \"ObstaclesSpawned\": 1,\n            \"ObstaclesSuccess\": 1,\n            \"ObstaclesInsSuccess\": 1,\n            \"ObstaclesExpSuccess\": 1,\n            \"ObstaclesFail\": 1,\n            \"ObstaclesInsFail\": 1,\n            \"ObstaclesExpFail\": 1,\n            \"PlayerHp\": 1,\n            \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n            \"flowDataDevicesId\": \"5ecdb3d78602371820a5b1f3\",\n            \"created_at\": \"2020-05-27T00:27:03.370Z\",\n            \"updatedAt\": \"2020-05-27T00:27:03.370Z\",\n            \"__v\": 0,\n            \"flowDataDevicesValues\": []\n        }\n    ],\n    \"errors\": [\n        {\n            \"code\": 300,\n            \"message\": \"O ID do registro é necessário para realizar esta consulta/atualização.\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Pacientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "GameToken",
+								"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/pacients?name=Diogo&limit=10&sort=asc&skip=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pacients"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Diogo",
+									"description": "Letras iniciais do nome do paciente (Case-Sensitive) [NÃO OBRIGATÓRIO]."
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								},
+								{
+									"key": "sort",
+									"value": "asc",
+									"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+								},
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Pacientes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients?name=Diogo&limit=10&sort=asc&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Diogo",
+											"description": "Letras iniciais do nome do paciente (Case-Sensitive) [NÃO OBRIGATÓRIO]."
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "Limite de dados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										},
+										{
+											"key": "sort",
+											"value": "asc",
+											"description": "Ordenação da Lista [NÃO OBRIGATÓRIO].  Valores Validos: asc | desc"
+										},
+										{
+											"key": "skip",
+											"value": "0",
+											"description": "Numero de dados que serão ignorados [NÃO OBRIGATÓRIO]. Valores Validos: 0 a ∞"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:18:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"_id\": \"5ecdaa5d0468d84facbb1ae5\",\n            \"name\": \"Diogo Mezzalira\",\n            \"birthday\": \"1998-03-20T03:00:00.000Z\",\n            \"sex\": \"Male\",\n            \"capacitiesPitaco\": {\n                \"insPeakFlow\": -76,\n                \"expPeakFlow\": 65,\n                \"insFlowDuration\": 4975,\n                \"expFlowDuration\": 7723,\n                \"respiratoryRate\": 0.216666669\n            },\n            \"capacitiesMano\": {\n                \"insPeakFlow\": 160,\n                \"expPeakFlow\": 180,\n                \"insFlowDuration\": 22,\n                \"expFlowDuration\": 32,\n                \"respiratoryRate\": 0\n            },\n            \"capacitiesCinta\": {\n                \"insPeakFlow\": 1800,\n                \"expPeakFlow\": 2200,\n                \"insFlowDuration\": 23,\n                \"expFlowDuration\": 32,\n                \"respiratoryRate\": 9\n            },\n            \"observations\": \"None\",\n            \"condition\": \"Healthy\",\n            \"unlockedLevels\": 4,\n            \"accumulatedScore\": 16000,\n            \"playSessionsDone\": 4,\n            \"calibrationPitacoDone\": true,\n            \"calibrationManoDone\": true,\n            \"calibrationCintaDone\": true,\n            \"howToPlayDone\": true,\n            \"weight\": 0,\n            \"height\": 0,\n            \"pitacoThreshold\": 7.5,\n            \"manoThreshold\": 7.5,\n            \"cintaThreshold\": 7.5,\n            \"ethnicity\": \"Branco\",\n            \"_gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\",\n            \"created_at\": \"2020-05-26T23:46:37.596Z\",\n            \"updated_at\": \"2020-06-02T23:29:57.108Z\",\n            \"__v\": 0,\n            \"playSessions\": [\n                {\n                    \"_id\": \"5ecf0b760c4cc621f4145586\",\n                    \"pacientId\": \"5ecdaa5d0468d84facbb1ae5\",\n                    \"sessionNumber\": 2,\n                    \"created_at\": \"2020-05-28T00:53:10.048Z\",\n                    \"updatedAt\": \"2020-05-28T00:53:10.048Z\",\n                    \"__v\": 0\n                },\n                {\n                    \"_id\": \"5efd2978c2e4e43a0844bd88\",\n                    \"pacientId\": \"5ecdaa5d0468d84facbb1ae5\",\n                    \"sessionNumber\": 4,\n                    \"created_at\": \"2020-07-01T00:01:05.274Z\",\n                    \"updatedAt\": \"2020-07-01T00:01:05.274Z\"\n                },\n                {\n                    \"_id\": \"5ecdadc17ef1d60c985f1430\",\n                    \"pacientId\": \"5ecdaa5d0468d84facbb1ae5\",\n                    \"sessionNumber\": 1,\n                    \"created_at\": \"2020-05-27T00:01:05.274Z\",\n                    \"updatedAt\": \"2020-05-27T00:01:05.274Z\",\n                    \"__v\": 0\n                },\n                {\n                    \"_id\": \"5ed6defdd6c02d1f502d04eb\",\n                    \"pacientId\": \"5ecdaa5d0468d84facbb1ae5\",\n                    \"sessionNumber\": 3,\n                    \"created_at\": \"2020-06-02T23:21:33.102Z\",\n                    \"updatedAt\": \"2020-06-02T23:21:33.102Z\",\n                    \"__v\": 0\n                },\n                {\n                    \"_id\": \"5efd2985c2e4e43a0844bd89\",\n                    \"pacientId\": \"5ecdaa5d0468d84facbb1ae5\",\n                    \"sessionNumber\": 5,\n                    \"created_at\": \"2020-07-02T00:01:05.274Z\",\n                    \"updatedAt\": \"2020-07-02T00:01:05.274Z\"\n                },\n                {\n                    \"_id\": \"5efd29aec2e4e43a0844bd8a\",\n                    \"pacientId\": \"5ecdaa5d0468d84facbb1ae5\",\n                    \"sessionNumber\": 6,\n                    \"created_at\": \"2020-07-03T00:01:05.274Z\",\n                    \"updatedAt\": \"2020-07-03T00:01:05.274Z\"\n                }\n            ]\n        }\n    ],\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Dados Respiratórios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "GameToken",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+								"type": "text",
+								"description": "Token de permissão de acesso a API"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/flowdata/:flowDataDeviceId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"flowdata",
+								":flowDataDeviceId"
+							],
+							"variable": [
+								{
+									"key": "flowDataDeviceId",
+									"value": "5ecdb3d78602371820a5b1f3",
+									"description": "Id do Dados de Calibrações"
+								}
+							]
+						},
+						"description": "Para busca de valores dos dispositivos utilizados em um determinado registro de minigame/plataforma"
+					},
+					"response": [
+						{
+							"name": "Dados Respiratórios",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"type": "text",
+										"description": "Token de permissão de acesso a API"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/flowdata/:flowDataDeviceId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"flowdata",
+										":flowDataDeviceId"
+									],
+									"variable": [
+										{
+											"key": "flowDataDeviceId",
+											"value": "5ecdb3d78602371820a5b1f3",
+											"description": "Id do Dados de Calibrações"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:26:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Consulta realizada com sucesso.\",\n    \"data\": [\n        {\n            \"_id\": \"5ecdb3d78602371820a5b1f3\",\n            \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n            \"flowDataDevices\": [\n                {\n                    \"flowData\": [\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1f5\",\n                            \"flowValue\": -288,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1f6\",\n                            \"flowValue\": 300,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1f7\",\n                            \"flowValue\": 137,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1f8\",\n                            \"flowValue\": 231,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1f9\",\n                            \"flowValue\": 39,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1fa\",\n                            \"flowValue\": 162,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1fb\",\n                            \"flowValue\": -107,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1fc\",\n                            \"flowValue\": 49,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1fd\",\n                            \"flowValue\": -234,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1fe\",\n                            \"flowValue\": -208,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b1ff\",\n                            \"flowValue\": -49,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b200\",\n                            \"flowValue\": -125,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b201\",\n                            \"flowValue\": 154,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b202\",\n                            \"flowValue\": -240,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b203\",\n                            \"flowValue\": -221,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b204\",\n                            \"flowValue\": -84,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b205\",\n                            \"flowValue\": -115,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b206\",\n                            \"flowValue\": -24,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b207\",\n                            \"flowValue\": -155,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b208\",\n                            \"flowValue\": -2,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b209\",\n                            \"flowValue\": 205,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b20a\",\n                            \"flowValue\": -45,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b20b\",\n                            \"flowValue\": -207,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b20c\",\n                            \"flowValue\": 118,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b20d\",\n                            \"flowValue\": -250,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b20e\",\n                            \"flowValue\": -160,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b20f\",\n                            \"flowValue\": -233,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b210\",\n                            \"flowValue\": 224,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b211\",\n                            \"flowValue\": -119,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b212\",\n                            \"flowValue\": 270,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b213\",\n                            \"flowValue\": 29,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b214\",\n                            \"flowValue\": -235,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b215\",\n                            \"flowValue\": 246,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b216\",\n                            \"flowValue\": -92,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b217\",\n                            \"flowValue\": -230,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b218\",\n                            \"flowValue\": -134,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b219\",\n                            \"flowValue\": -82,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b21a\",\n                            \"flowValue\": 250,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b21b\",\n                            \"flowValue\": 149,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b21c\",\n                            \"flowValue\": 31,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b21d\",\n                            \"flowValue\": 22,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b21e\",\n                            \"flowValue\": 1,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b21f\",\n                            \"flowValue\": 60,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b220\",\n                            \"flowValue\": -92,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b221\",\n                            \"flowValue\": -210,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b222\",\n                            \"flowValue\": 98,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b223\",\n                            \"flowValue\": -45,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b224\",\n                            \"flowValue\": 104,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b225\",\n                            \"flowValue\": 145,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b226\",\n                            \"flowValue\": 112,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b227\",\n                            \"flowValue\": -123,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b228\",\n                            \"flowValue\": -278,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b229\",\n                            \"flowValue\": 244,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b22a\",\n                            \"flowValue\": -5,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b22b\",\n                            \"flowValue\": -247,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b22c\",\n                            \"flowValue\": -18,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b22d\",\n                            \"flowValue\": -75,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b22e\",\n                            \"flowValue\": -269,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b22f\",\n                            \"flowValue\": -250,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b230\",\n                            \"flowValue\": 203,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b231\",\n                            \"flowValue\": -275,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b232\",\n                            \"flowValue\": 142,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b233\",\n                            \"flowValue\": -240,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b234\",\n                            \"flowValue\": -126,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b235\",\n                            \"flowValue\": 220,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b236\",\n                            \"flowValue\": 101,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b237\",\n                            \"flowValue\": 275,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b238\",\n                            \"flowValue\": 205,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b239\",\n                            \"flowValue\": -284,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b23a\",\n                            \"flowValue\": 102,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b23b\",\n                            \"flowValue\": 108,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b23c\",\n                            \"flowValue\": -147,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b23d\",\n                            \"flowValue\": -60,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b23e\",\n                            \"flowValue\": 224,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b23f\",\n                            \"flowValue\": 62,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b240\",\n                            \"flowValue\": -57,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b241\",\n                            \"flowValue\": 198,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b242\",\n                            \"flowValue\": 267,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b243\",\n                            \"flowValue\": 75,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b244\",\n                            \"flowValue\": 48,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b245\",\n                            \"flowValue\": -40,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b246\",\n                            \"flowValue\": 185,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b247\",\n                            \"flowValue\": -137,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b248\",\n                            \"flowValue\": 273,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b249\",\n                            \"flowValue\": -61,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b24a\",\n                            \"flowValue\": -134,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b24b\",\n                            \"flowValue\": 285,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b24c\",\n                            \"flowValue\": -256,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b24d\",\n                            \"flowValue\": -222,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b24e\",\n                            \"flowValue\": 57,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b24f\",\n                            \"flowValue\": -20,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b250\",\n                            \"flowValue\": 93,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b251\",\n                            \"flowValue\": 111,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b252\",\n                            \"flowValue\": 129,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b253\",\n                            \"flowValue\": -255,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b254\",\n                            \"flowValue\": 168,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b255\",\n                            \"flowValue\": 246,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b256\",\n                            \"flowValue\": -142,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b257\",\n                            \"flowValue\": 85,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        },\n                        {\n                            \"_id\": \"5ecdb3d78602371820a5b258\",\n                            \"flowValue\": 293,\n                            \"timestamp\": \"2020-01-01T03:00:00.000Z\"\n                        }\n                    ],\n                    \"_id\": \"5ecdb3d78602371820a5b1f4\",\n                    \"deviceName\": \"Pitaco\"\n                }\n            ],\n            \"created_at\": \"2020-05-27T00:27:03.185Z\",\n            \"updatedAt\": \"2020-05-27T00:27:03.185Z\",\n            \"__v\": 0\n        }\n    ],\n    \"errors\": null\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Configurações de Jogo",
+					"item": [
+						{
+							"name": "Salvar Os Parametros de Configurações do Jogo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"pacientId\": \"626d8e0f192fcf413027dda9\", // Id do Paciente\r\n    \"stageId\": 1, // De 1 a ∞ \r\n    \"phase\": 4, // De 1 a 3, 4 é customizado pelo fisioterapeuta (Não é possivel via WEB)\r\n    \"level\": 4, //  Level Identification (min: 1) - Sempre Zerar\r\n    \"ObjectSpeedFactor\": \"0.80\", // Velocidade dos objectos ( Min: 1.0 e MAX: 3.0 )\r\n    \"HeightIncrement\": \"0.80\", // Conforme a performance do Jogador ( Min: 0.0 e MAX: 1.0 )\r\n    \"HeightUpThreshold\": \"0.80\", // Number of successes required to increase performance height/sizes by 'Increment' during a level (min: 0.0 max: 5.0)\r\n    \"HeightDownThreshold\": \"0.80\", // Number of failures required to decrease performance height/sizes by 'Increment' during a level (min: 0.0 max: 5.0)\r\n    \"SizeIncrement\": \"0.80\", // Conforme a performance do Jogador ( Min: 0.0 e MAX: 1.0 )\r\n    \"SizeUpThreshold\": \"0.80\", // Number of successes required to increase performance height/sizes by 'Increment' during a level (min: 0.0 max: 5.0)\r\n    \"SizeDownThreshold\": \"0.80\", // Number of failures required to decrease performance height/sizes by 'Increment' during a level (min: 0.0 max: 5.0)\r\n    \"Loops\": 1, // Number of times to repeat a script (min: 1, max: 99)\r\n    \"gameScript\": [\r\n        {\r\n            \"ObjectType\": \"Target\", //Object to spawn (Target | Obstacle | Relax)\r\n            \"DifficultyFactor\": \"0.2\", // Modifies Height/Size (min: 0.0, max: 1.0)\r\n            \"PositionYFactor\": \"1\", // Relative Position as INSpiratory or EXPiratory (AIR = 1, WATER = -1)\r\n            \"PositionXSpacing\": \"2\" // Distance from the last spawned object in unity's metric unit\r\n        },\r\n        {\r\n            \"ObjectType\": \"Relax\", // Relax command does not use DifficultyFactor and PositionYFactor\r\n            \"DifficultyFactor\": \"0\", // Modifies Height/Size (min: 0.0, max: 1.0)\r\n            \"PositionYFactor\": \"0\", // Relative Position as INSpiratory or EXPiratory (AIR = 1, WATER = -1)\r\n            \"PositionXSpacing\": \"1\" // Distance from the last spawned object in unity's metric unit\r\n        }\r\n    ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/gameparameter",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"gameparameter"
+									]
+								},
+								"description": "Salva um paciente no BD"
+							},
+							"response": [
+								{
+									"name": "Salvar Os Parametros de Configurações do Jogo",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "GameToken",
+												"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+												"description": "Token de permissão de acesso a API",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n    \"stageId\": 1,\r\n    \"phase\": 4,\r\n    \"level\": 4,\r\n    \"ObjectSpeedFactor\": \"0.80\",\r\n    \"HeightIncrement\": \"0.80\",\r\n    \"HeightUpThreshold\": \"0.80\",\r\n    \"HeightDownThreshold\": \"0.80\",\r\n    \"SizeIncrement\": \"0.80\",\r\n    \"SizeUpThreshold\": \"0.80\",\r\n    \"SizeDownThreshold\": \"0.80\",\r\n    \"gameScript\": [\r\n        {\r\n            \"ObjectType\": \"Target\",\r\n            \"DifficultyFactor\": \"0.2\",\r\n            \"PositionYFactor\": \"1\",\r\n            \"PositionXSpacing\": \"2\"\r\n        },\r\n        {\r\n            \"ObjectType\": \"Relax\",\r\n            \"DifficultyFactor\": \"0\",\r\n            \"PositionYFactor\": \"0\",\r\n            \"PositionXSpacing\": \"1\"\r\n        }\r\n    ],\r\n    \"Loops\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/gameparameter",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"gameparameter"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Tue, 31 May 2022 01:36:33 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Paciente salvo com sucesso.\",\n    \"data\": {\n        \"_id\": \"6295706ee888a714b86259fb\",\n        \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n        \"stageId\": 1,\n        \"phase\": 4,\n        \"level\": 4,\n        \"ObjectSpeedFactor\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"HeightIncrement\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"HeightUpThreshold\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"HeightDownThreshold\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"SizeIncrement\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"SizeUpThreshold\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"SizeDownThreshold\": {\n            \"$numberDecimal\": \"0.80\"\n        },\n        \"gameScript\": [\n            {\n                \"_id\": \"62957121e888a714b8625a11\",\n                \"ObjectType\": \"Target\",\n                \"DifficultyFactor\": \"0.2\",\n                \"PositionYFactor\": \"1\",\n                \"PositionXSpacing\": \"2\"\n            },\n            {\n                \"_id\": \"62957121e888a714b8625a12\",\n                \"ObjectType\": \"Relax\",\n                \"DifficultyFactor\": \"0\",\n                \"PositionYFactor\": \"0\",\n                \"PositionXSpacing\": \"1\"\n            }\n        ],\n        \"Loops\": 1,\n        \"created_at\": \"2022-05-31T01:33:34.927Z\",\n        \"updated_at\": \"2022-05-31T01:36:33.325Z\",\n        \"__v\": 1\n    },\n    \"errors\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Salvar Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "GameToken",
+								"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Teste C\",\r\n    \"birthday\": \"1995/11/25\",\r\n    \"sex\": \"Male\",\r\n    \"capacitiesPitaco\": {\r\n        \"insPeakFlow\": 0,\r\n        \"expPeakFlow\": 0,\r\n        \"insFlowDuration\": 0,\r\n        \"expFlowDuration\": 0,\r\n        \"respiratoryRate\": 0\r\n    },\r\n    \"capacitiesMano\": {\r\n        \"insPeakFlow\": 0,\r\n        \"expPeakFlow\": 0,\r\n        \"insFlowDuration\": 0,\r\n        \"expFlowDuration\": 0,\r\n        \"respiratoryRate\": 0\r\n    },\r\n    \"capacitiesCinta\": {\r\n        \"insPeakFlow\": 0,\r\n        \"expPeakFlow\": 0,\r\n        \"insFlowDuration\": 0,\r\n        \"expFlowDuration\": 0,\r\n        \"respiratoryRate\": 0\r\n    },\r\n    \"observations\": \"None\",\r\n    \"condition\": \"Healthy\",\r\n    \"unlockedLevels\": 1,\r\n    \"accumulatedScore\": 0,\r\n    \"playSessionsDone\": 0,\r\n    \"calibrationPitacoDone\": false,\r\n    \"calibrationManoDone\": false,\r\n    \"calibrationCintaDone\": false,\r\n    \"howToPlayDone\": false,\r\n    \"weight\": 100,\r\n    \"height\": 185,\r\n    \"pitacoThreshold\": 0,\r\n    \"manoThreshold\": 0,\r\n    \"cintaThreshold\": 0,\r\n    \"ethnicity\": \"Templário das Terras Altas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pacients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pacients"
+							]
+						},
+						"description": "Salva um paciente no BD"
+					},
+					"response": [
+						{
+							"name": "Salvar Paciente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Teste C\",\r\n    \"birthday\": \"1995/11/25\",\r\n    \"sex\": \"Male\",\r\n    \"capacitiesPitaco\": {\r\n        \"insPeakFlow\": 0,\r\n        \"expPeakFlow\": 0,\r\n        \"insFlowDuration\": 0,\r\n        \"expFlowDuration\": 0,\r\n        \"respiratoryRate\": 0\r\n    },\r\n    \"capacitiesMano\": {\r\n        \"insPeakFlow\": 0,\r\n        \"expPeakFlow\": 0,\r\n        \"insFlowDuration\": 0,\r\n        \"expFlowDuration\": 0,\r\n        \"respiratoryRate\": 0\r\n    },\r\n    \"capacitiesCinta\": {\r\n        \"insPeakFlow\": 0,\r\n        \"expPeakFlow\": 0,\r\n        \"insFlowDuration\": 0,\r\n        \"expFlowDuration\": 0,\r\n        \"respiratoryRate\": 0\r\n    },\r\n    \"observations\": \"None\",\r\n    \"condition\": \"Healthy\",\r\n    \"unlockedLevels\": 1,\r\n    \"accumulatedScore\": 0,\r\n    \"playSessionsDone\": 0,\r\n    \"calibrationPitacoDone\": false,\r\n    \"calibrationManoDone\": false,\r\n    \"calibrationCintaDone\": false,\r\n    \"howToPlayDone\": false,\r\n    \"weight\": 100,\r\n    \"height\": 185,\r\n    \"pitacoThreshold\": 0,\r\n    \"manoThreshold\": 0,\r\n    \"cintaThreshold\": 0,\r\n    \"ethnicity\": \"Templário das Terras Altas\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/pacients",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 01:51:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Paciente salvo com sucesso.\",\n    \"data\": {\n        \"_id\": \"629574a4e888a714b8625a19\",\n        \"name\": \"Teste C\",\n        \"birthday\": \"1995-11-25T02:00:00.000Z\",\n        \"sex\": \"Male\",\n        \"capacitiesPitaco\": {\n            \"insPeakFlow\": 0,\n            \"expPeakFlow\": 0,\n            \"insFlowDuration\": 0,\n            \"expFlowDuration\": 0,\n            \"respiratoryRate\": 0\n        },\n        \"capacitiesMano\": {\n            \"insPeakFlow\": 0,\n            \"expPeakFlow\": 0,\n            \"insFlowDuration\": 0,\n            \"expFlowDuration\": 0,\n            \"respiratoryRate\": 0\n        },\n        \"capacitiesCinta\": {\n            \"insPeakFlow\": 0,\n            \"expPeakFlow\": 0,\n            \"insFlowDuration\": 0,\n            \"expFlowDuration\": 0,\n            \"respiratoryRate\": 0\n        },\n        \"observations\": \"None\",\n        \"condition\": \"Healthy\",\n        \"unlockedLevels\": 1,\n        \"accumulatedScore\": 0,\n        \"playSessionsDone\": 0,\n        \"calibrationPitacoDone\": false,\n        \"calibrationManoDone\": false,\n        \"calibrationCintaDone\": false,\n        \"howToPlayDone\": false,\n        \"weight\": 100,\n        \"height\": 185,\n        \"pitacoThreshold\": 0,\n        \"manoThreshold\": 0,\n        \"cintaThreshold\": 0,\n        \"ethnicity\": \"Templário das Terras Altas\",\n        \"_gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\",\n        \"created_at\": \"2022-05-31T01:51:32.470Z\",\n        \"updated_at\": \"2022-05-31T01:51:32.470Z\",\n        \"__v\": 0\n    },\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Salvar Calibração",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "GameToken",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n    \"gameDevice\": \"Pitaco\",\r\n    \"calibrationValue\": -500,\r\n    \"calibrationExercise\": \"InspiratoryPeak\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/calibrations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calibrations"
+							]
+						},
+						"description": "Possíveis valores para\n\n\"gameDevice\": \"Pitaco\"\n\"calibrationExercise\":\n\t-\"RespiratoryFrequency\"\n\t-\"InspiratoryPeak\"\n\t-\"InspiratoryDuration\"\n\t-\"ExpiratoryPeak\"\n\t-\"ExpiratoryDuration\""
+					},
+					"response": [
+						{
+							"name": "Salvar Calibração",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n    \"gameDevice\": \"Pitaco\",\r\n    \"calibrationValue\": -500,\r\n    \"calibrationExercise\": \"InspiratoryPeak\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/calibrations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"calibrations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:30:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Calibração salva com sucesso.\",\n    \"data\": {\n        \"_id\": \"62957dc8c6d54c25b8a692df\",\n        \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n        \"gameDevice\": \"Pitaco\",\n        \"calibrationValue\": -500,\n        \"calibrationExercise\": \"InspiratoryPeak\",\n        \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n        \"created_at\": \"2022-05-31T02:30:32.577Z\",\n        \"updatedAt\": \"2022-05-31T02:30:32.577Z\",\n        \"__v\": 0,\n        \"id\": \"62957dc8c6d54c25b8a692df\"\n    },\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Salvar Resumo Minigame",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "GameToken",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n    \"minigameName\": \"WaterGame\",\r\n    \"respiratoryExercise\": \"InspiratoryPeak\",\r\n    \"devices\": [\r\n      \"Pitaco\"\r\n    ],\r\n    \"flowDataRounds\": [\r\n      {\r\n        \"minigameRound\": 1,\r\n        \"roundScore\": 2,\r\n        \"roundFlowScore\": 152,\r\n        \"flowDataDevices\": [\r\n          {\r\n            \"deviceName\": \"Pitaco\",\r\n            \"flowData\": [\r\n              {\r\n                \"flowValue\": 36,\r\n                \"timestamp\": \"2020-02-23T08:59:50\"\r\n              },\r\n              {\r\n                \"flowValue\": 64,\r\n                \"timestamp\": \"2020-02-23T09:00:00\"\r\n              },\r\n              {\r\n                \"flowValue\": 160,\r\n                \"timestamp\": \"2020-02-23T09:01:10\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"minigameRound\": 2,\r\n        \"roundScore\": 2,\r\n        \"roundFlowScore\": 87,\r\n        \"flowDataDevices\": [\r\n          {\r\n            \"deviceName\": \"Pitaco\",\r\n            \"flowData\": [\r\n              {\r\n                \"flowValue\": 35,\r\n                \"timestamp\": \"2020-02-23T08:59:50\"\r\n              },\r\n              {\r\n                \"flowValue\": 86,\r\n                \"timestamp\": \"2020-02-23T09:00:00\"\r\n              },\r\n              {\r\n                \"flowValue\": 75,\r\n                \"timestamp\": \"2020-02-23T09:01:10\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"minigameRound\": 3,\r\n        \"roundScore\": 1,\r\n        \"roundFlowScore\": 91,\r\n        \"flowDataDevices\": [\r\n          {\r\n            \"deviceName\": \"Pitaco\",\r\n            \"flowData\": [\r\n              {\r\n                \"flowValue\": 4,\r\n                \"timestamp\": \"2020-02-23T08:59:50\"\r\n              },\r\n              {\r\n                \"flowValue\": 86,\r\n                \"timestamp\": \"2020-02-23T09:00:00\"\r\n              },\r\n              {\r\n                \"flowValue\": 60,\r\n                \"timestamp\": \"2020-02-23T09:01:10\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/minigames",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"minigames"
+							]
+						},
+						"description": "Valores possíveis para\n\n\"minigameName\": \n\t-\"CakeGame\"\n\t-\"WaterGame\"\n\t-\"BirdGame\"\n\"respiratoryExercise\":\n\t-\"RespiratoryFrequency\"\n\t-\"InspiratoryPeak\"\n\t-\"InspiratoryDuration\"\n\t-\"ExpiratoryPeak\"\n\t-\"ExpiratoryDuration\""
+					},
+					"response": [
+						{
+							"name": "Salvar Resumo Minigame",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\r\n    \"minigameName\": \"WaterGame\",\r\n    \"respiratoryExercise\": \"InspiratoryPeak\",\r\n    \"devices\": [\r\n      \"Pitaco\"\r\n    ],\r\n    \"flowDataRounds\": [\r\n      {\r\n        \"minigameRound\": 1,\r\n        \"roundScore\": 2,\r\n        \"roundFlowScore\": 152,\r\n        \"flowDataDevices\": [\r\n          {\r\n            \"deviceName\": \"Pitaco\",\r\n            \"flowData\": [\r\n              {\r\n                \"flowValue\": 36,\r\n                \"timestamp\": \"2020-02-23T08:59:50\"\r\n              },\r\n              {\r\n                \"flowValue\": 64,\r\n                \"timestamp\": \"2020-02-23T09:00:00\"\r\n              },\r\n              {\r\n                \"flowValue\": 160,\r\n                \"timestamp\": \"2020-02-23T09:01:10\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"minigameRound\": 2,\r\n        \"roundScore\": 2,\r\n        \"roundFlowScore\": 87,\r\n        \"flowDataDevices\": [\r\n          {\r\n            \"deviceName\": \"Pitaco\",\r\n            \"flowData\": [\r\n              {\r\n                \"flowValue\": 35,\r\n                \"timestamp\": \"2020-02-23T08:59:50\"\r\n              },\r\n              {\r\n                \"flowValue\": 86,\r\n                \"timestamp\": \"2020-02-23T09:00:00\"\r\n              },\r\n              {\r\n                \"flowValue\": 75,\r\n                \"timestamp\": \"2020-02-23T09:01:10\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"minigameRound\": 3,\r\n        \"roundScore\": 1,\r\n        \"roundFlowScore\": 91,\r\n        \"flowDataDevices\": [\r\n          {\r\n            \"deviceName\": \"Pitaco\",\r\n            \"flowData\": [\r\n              {\r\n                \"flowValue\": 4,\r\n                \"timestamp\": \"2020-02-23T08:59:50\"\r\n              },\r\n              {\r\n                \"flowValue\": 86,\r\n                \"timestamp\": \"2020-02-23T09:00:00\"\r\n              },\r\n              {\r\n                \"flowValue\": 60,\r\n                \"timestamp\": \"2020-02-23T09:01:10\"\r\n              }\r\n            ]\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/minigames",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"minigames"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:30:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Minigame salvo com sucesso.\",\n    \"data\": {\n        \"devices\": [\n            \"Pitaco\"\n        ],\n        \"_id\": \"62957dd9c6d54c25b8a692ef\",\n        \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n        \"minigameName\": \"WaterGame\",\n        \"respiratoryExercise\": \"InspiratoryPeak\",\n        \"flowDataRounds\": [\n            {\n                \"_id\": \"62957dd9c6d54c25b8a692f0\",\n                \"minigameRound\": 1,\n                \"roundScore\": 2,\n                \"roundFlowScore\": 152,\n                \"flowDataDevicesId\": \"62957dd9c6d54c25b8a692e0\"\n            },\n            {\n                \"_id\": \"62957dd9c6d54c25b8a692f1\",\n                \"minigameRound\": 2,\n                \"roundScore\": 2,\n                \"roundFlowScore\": 87,\n                \"flowDataDevicesId\": \"62957dd9c6d54c25b8a692e5\"\n            },\n            {\n                \"_id\": \"62957dd9c6d54c25b8a692f2\",\n                \"minigameRound\": 3,\n                \"roundScore\": 1,\n                \"roundFlowScore\": 91,\n                \"flowDataDevicesId\": \"62957dd9c6d54c25b8a692ea\"\n            }\n        ],\n        \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n        \"created_at\": \"2022-05-31T02:30:49.764Z\",\n        \"updatedAt\": \"2022-05-31T02:30:49.764Z\",\n        \"__v\": 0\n    },\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Salvar Resumo Plataforma",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "GameToken",
+								"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n    \"flowDataDevices\": [\n        {\n            \"deviceName\": \"Pitaco\",\n            \"flowData\": [\n                {\n                    \"flowValue\": 100,\n                    \"timestamp\": \"2020-02-23T08:59:50\"\n                },\n                {\n                    \"flowValue\": 110,\n                    \"timestamp\": \"2020-02-23T09:00:00\"\n                },\n                {\n                    \"flowValue\": 120,\n                    \"timestamp\": \"2020-02-23T09:01:10\"\n                }\n            ]\n        }\n    ],\n    \"playStart\": \"2020-02-23T09:01:10\",\n    \"playFinish\": \"2020-02-23T09:01:10\",\n    \"duration\": 100,\n    \"result\": 1,\n    \"stageId\": 1,\n    \"phase\": 1,\n    \"level\": 1,\n    \"relaxTimeSpawned\": 1,\n    \"maxScore\": 1,\n    \"scoreRatio\": 1,\n    \"targetsSpawned\": 1,\n    \"TargetsSuccess\": 1,\n    \"TargetsInsuccess\": 1,\n    \"TargetsExpSuccess\": 1,\n    \"TargetsFails\": 1,\n    \"TargetsInsFail\": 1,\n    \"TargetsExpFail\": 1,\n    \"ObstaclesSpawned\": 1,\n    \"ObstaclesSuccess\": 1,\n    \"ObstaclesInsSuccess\": 1,\n    \"ObstaclesExpSuccess\": 1,\n    \"ObstaclesFail\": 1,\n    \"ObstaclesInsFail\": 1,\n    \"ObstaclesExpFail\": 1,\n    \"PlayerHp\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/plataforms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"plataforms"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Salvar Resumo Plataforma",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "GameToken",
+										"value": "e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n    \"flowDataDevices\": [\n        {\n            \"deviceName\": \"Pitaco\",\n            \"flowData\": [\n                {\n                    \"flowValue\": 100,\n                    \"timestamp\": \"2020-02-23T08:59:50\"\n                },\n                {\n                    \"flowValue\": 110,\n                    \"timestamp\": \"2020-02-23T09:00:00\"\n                },\n                {\n                    \"flowValue\": 120,\n                    \"timestamp\": \"2020-02-23T09:01:10\"\n                }\n            ]\n        }\n    ],\n    \"playStart\": \"2020-02-23T09:01:10\",\n    \"playFinish\": \"2020-02-23T09:01:10\",\n    \"duration\": 100,\n    \"result\": 1,\n    \"stageId\": 1,\n    \"phase\": 1,\n    \"level\": 1,\n    \"relaxTimeSpawned\": 1,\n    \"maxScore\": 1,\n    \"scoreRatio\": 1,\n    \"targetsSpawned\": 1,\n    \"TargetsSuccess\": 1,\n    \"TargetsInsuccess\": 1,\n    \"TargetsExpSuccess\": 1,\n    \"TargetsFails\": 1,\n    \"TargetsInsFail\": 1,\n    \"TargetsExpFail\": 1,\n    \"ObstaclesSpawned\": 1,\n    \"ObstaclesSuccess\": 1,\n    \"ObstaclesInsSuccess\": 1,\n    \"ObstaclesExpSuccess\": 1,\n    \"ObstaclesFail\": 1,\n    \"ObstaclesInsFail\": 1,\n    \"ObstaclesExpFail\": 1,\n    \"PlayerHp\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/plataforms",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"plataforms"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:32:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Plataforma salva com sucesso.\",\n    \"data\": {\n        \"devices\": [\n            \"Pitaco\"\n        ],\n        \"_id\": \"62957e43c6d54c25b8a692f8\",\n        \"pacientId\": \"628ea5647209eca5e1fa1e66\",\n        \"playStart\": \"2020-02-23T12:01:10.000Z\",\n        \"playFinish\": \"2020-02-23T12:01:10.000Z\",\n        \"duration\": 100,\n        \"result\": 1,\n        \"stageId\": 1,\n        \"phase\": 1,\n        \"level\": 1,\n        \"relaxTimeSpawned\": 1,\n        \"maxScore\": 1,\n        \"scoreRatio\": 1,\n        \"targetsSpawned\": 1,\n        \"TargetsSuccess\": 1,\n        \"TargetsExpSuccess\": 1,\n        \"TargetsFails\": 1,\n        \"TargetsInsFail\": 1,\n        \"TargetsExpFail\": 1,\n        \"ObstaclesSpawned\": 1,\n        \"ObstaclesSuccess\": 1,\n        \"ObstaclesInsSuccess\": 1,\n        \"ObstaclesExpSuccess\": 1,\n        \"ObstaclesFail\": 1,\n        \"ObstaclesInsFail\": 1,\n        \"ObstaclesExpFail\": 1,\n        \"PlayerHp\": 1,\n        \"_gameToken\": \"e2cfa72e-7fc3-4f45-aa6f-2d904299d6cf\",\n        \"flowDataDevicesValues\": [\n            {\n                \"_id\": \"62957e43c6d54c25b8a692f9\",\n                \"deviceName\": \"Pitaco\",\n                \"maxFlowValue\": 120,\n                \"minFlowValue\": 100,\n                \"meanFlowValue\": 110\n            }\n        ],\n        \"flowDataDevicesId\": \"62957e43c6d54c25b8a692f3\",\n        \"created_at\": \"2022-05-31T02:32:35.793Z\",\n        \"updatedAt\": \"2022-05-31T02:32:35.793Z\",\n        \"__v\": 0\n    },\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Criar Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": \"62958026c6d54c25b8a692fa\",\n\t\"description\": \"Game Token para testes.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"token"
+							]
+						},
+						"description": "Rota para criar token de acesso a API"
+					},
+					"response": [
+						{
+							"name": "Criar Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": \"62958142c6d54c25b8a692fc\",\n\t\"description\": \"Game Token para testes.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:46:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Já existe um Token de Acesso gerado para este usuário!.\",\n    \"data\": {\n        \"gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\"\n    },\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Criar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullname\": \"Otávio Fagundes\",\n\t\"username\": \"otavio\",\n\t\"password\": \"otavio123\",\n\t\"email\": \"otavio@otavio.com\",\n\t\"role\": \"User\",\n\t\"pacientId\": \"5ecdab2c7ef1d60c985f142c\",\n\t\"gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Cria um usuário no sistema"
+					},
+					"response": [
+						{
+							"name": "Criar Usuário",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"fullname\": \"Otávio Fagundes\",\n\t\"username\": \"otavio\",\n\t\"password\": \"otavio123\",\n\t\"email\": \"otavio@otavio.com\",\n\t\"role\": \"User\",\n\t\"pacientId\": \"5ecdab2c7ef1d60c985f142c\",\n\t\"gameToken\": \"0a377edf-9e39-427b-9426-ef87afb7287f\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:40:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": false,\n    \"message\": \"Usuário criado com sucesso.\",\n    \"data\": null,\n    \"errors\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "Atualizar Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "GameToken",
+								"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"capacitiesPitaco\": {\n        \"insPeakFlow\": -12.25,\n        \"expPeakFlow\": 12.125,\n        \"insFlowDuration\": 579.75,\n        \"expFlowDuration\": 993.875,\n        \"respiratoryRate\": 1.46664\n    },\n    \"capacitiesMano\": {\n        \"insPeakFlow\": 0,\n        \"expPeakFlow\": 0,\n        \"insFlowDuration\": 0,\n        \"expFlowDuration\": 0,\n        \"respiratoryRate\": 0\n    },\n    \"capacitiesCinta\": {\n        \"insPeakFlow\": 0,\n        \"expPeakFlow\": 0,\n        \"insFlowDuration\": 0,\n        \"expFlowDuration\": 0,\n        \"respiratoryRate\": 0\n    },\n    \"name\": \"jhonatan Nery\",\n    \"birthday\": \"1991-06-04T03:00:00Z\",\n    \"sex\": \"Male\",\n    \"observations\": \"Teste de Envio Remoto 2\",\n    \"condition\": \"Obstructive\",\n    \"unlockedLevels\": 2,\n    \"accumulatedScore\": 0,\n    \"playSessionsDone\": 80,\n    \"calibrationPitacoDone\": true,\n    \"calibrationManoDone\": true,\n    \"calibrationCintaDone\": true,\n    \"howToPlayDone\": true,\n    \"weigth\": 0,\n    \"heigth\": 0,\n    \"pitacoThreshold\": 7.5,\n    \"manoThreshold\": 0,\n    \"cintaThreshold\": 0,\n    \"ethnicity\": \"Pardo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/pacients/:pacientId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pacients",
+								":pacientId"
+							],
+							"variable": [
+								{
+									"key": "pacientId",
+									"value": "5ecdab2c7ef1d60c985f142c",
+									"description": "Id do Paciente [OBRIGATÓRIO]"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualizar Paciente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"capacitiesPitaco\": {\n        \"insPeakFlow\": -12.25,\n        \"expPeakFlow\": 12.125,\n        \"insFlowDuration\": 579.75,\n        \"expFlowDuration\": 993.875,\n        \"respiratoryRate\": 1.46664\n    },\n    \"capacitiesMano\": {\n        \"insPeakFlow\": 0,\n        \"expPeakFlow\": 0,\n        \"insFlowDuration\": 0,\n        \"expFlowDuration\": 0,\n        \"respiratoryRate\": 0\n    },\n    \"capacitiesCinta\": {\n        \"insPeakFlow\": 0,\n        \"expPeakFlow\": 0,\n        \"insFlowDuration\": 0,\n        \"expFlowDuration\": 0,\n        \"respiratoryRate\": 0\n    },\n    \"name\": \"jhonatan Nery\",\n    \"birthday\": \"1991-06-04T03:00:00Z\",\n    \"sex\": \"Male\",\n    \"observations\": \"Teste de Envio Remoto 2\",\n    \"condition\": \"Obstructive\",\n    \"unlockedLevels\": 2,\n    \"accumulatedScore\": 0,\n    \"playSessionsDone\": 80,\n    \"calibrationPitacoDone\": true,\n    \"calibrationManoDone\": true,\n    \"calibrationCintaDone\": true,\n    \"howToPlayDone\": true,\n    \"weigth\": 0,\n    \"heigth\": 0,\n    \"pitacoThreshold\": 7.5,\n    \"manoThreshold\": 0,\n    \"cintaThreshold\": 0,\n    \"ethnicity\": \"Pardo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId"
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "5ecdab2c7ef1d60c985f142c",
+											"description": "Id do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 02:49:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Registro atualizado com sucesso.\",\n    \"data\": {\n        \"n\": 1,\n        \"electionId\": \"7fffffff0000000000000081\",\n        \"opTime\": {\n            \"ts\": \"7103727275945754666\",\n            \"t\": 129\n        },\n        \"nModified\": 1,\n        \"ok\": 1,\n        \"$clusterTime\": {\n            \"clusterTime\": \"7103727275945754666\",\n            \"signature\": {\n                \"hash\": \"lv6QmPUVw18CgAnacpJoAEbHELA=\",\n                \"keyId\": \"7051675506428608524\"\n            }\n        },\n        \"operationTime\": \"7103727275945754666\"\n    },\n    \"errors\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "Excluir Paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "GameToken",
+								"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+								"description": "Token de permissão de acesso a API",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/pacients/:pacientId?allData=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"pacients",
+								":pacientId"
+							],
+							"query": [
+								{
+									"key": "allData",
+									"value": "1",
+									"description": "Remove Todos os Dados? Valores Validos: 1 => Sim | 0 => Não [NÃO OBRIGATÓRIO]"
+								}
+							],
+							"variable": [
+								{
+									"key": "pacientId",
+									"value": "6295855a20949c0380ac569c",
+									"description": "ID do Paciente [OBRIGATÓRIO]"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Excluir Paciente",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "GameToken",
+										"value": "0a377edf-9e39-427b-9426-ef87afb7287f",
+										"description": "Token de permissão de acesso a API",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/pacients/:pacientId?allData=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"pacients",
+										":pacientId"
+									],
+									"query": [
+										{
+											"key": "allData",
+											"value": "1",
+											"description": "Remove Todos os Dados? Valores Validos: 1 => Sim | 0 => Não [NÃO OBRIGATÓRIO]"
+										}
+									],
+									"variable": [
+										{
+											"key": "pacientId",
+											"value": "6295855a20949c0380ac569c",
+											"description": "ID do Paciente [OBRIGATÓRIO]"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 03:02:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"authorized\": true,\n    \"message\": \"Exclusão realizada com sucesso.\",\n    \"data\": null,\n    \"errors\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://iblueit.azurewebsites.net/api"
+		}
+	]
+}

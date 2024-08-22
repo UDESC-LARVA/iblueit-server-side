@@ -1,0 +1,52 @@
+version: '3.3'
+
+services:
+  iblueit-mongo:
+    image: mongo
+    container_name: iblueit-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'usuarioiblueit'
+      MONGO_INITDB_ROOT_PASSWORD: 'senhaiblueit'
+
+  iblueit-proxy:
+    image: iblueit/proxy:latest
+    container_name: iblueit-proxy
+    ports:
+     - "7071:80"
+
+  iblueit-api:
+    image: iblueit/api:latest
+    container_name: iblueit-api
+    ports:
+      - "8080:80"
+    environment:
+      MongoDbAtlas: 'mongodb://usuarioiblueit:senhaiblueit@iblueit-mongo/?retryWrites=true&w=majority'
+      SMTP_Server_Hostname: 'seudominio.com'
+      SMTP_Server_Username: 'service@seudominio.com'
+      SMTP_Server_Password: 'Teste@123'
+      URL_API_IA: 'http://iblueit-ia:5000/'
+    links:
+      - "iblueit-mongo:iblueit-mongo"
+      - "iblueit-ia:iblueit-ia"
+
+  iblueit-front:
+    image: iblueit/front:latest
+    container_name: iblueit-front
+    ports:
+      - "3000:80"
+    environment:
+      API_URL: 'http://localhost:7071/api'
+    links:
+      - "iblueit-api:iblueit-api"
+
+   iblueit-ia:
+    image: iblueit/ia:latest
+    container_name: iblueit-ia
+    ports:
+      - "5000:5000"
+    environment:
+      MongoDbAtlas: 'mongodb://usuarioiblueit:senhaiblueit@iblueit-mongo/?retryWrites=true&w=majority'
+    links:
+      - "iblueit-api:iblueit-api"

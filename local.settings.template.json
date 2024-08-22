@@ -1,0 +1,14 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+      "AzureWebJobsStorage": "",
+      "FUNCTIONS_WORKER_RUNTIME": "node",
+      "MongoDbAtlas":"MongoDBString",
+      "URL_API_IA": "URL Server API IA"
+    },
+    "Host": {
+      "CORS": "*",
+      "CORSCredentials": false
+    }
+  }
+  
