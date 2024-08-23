@@ -59,3 +59,5 @@ func host start --cors *
 
 - [I Blue It](https://github.com/UDESC-LARVA/iblueit-psychophysiological-flow)
 
+- Acesse o site: [I Blue It Health InfoCharts](https://www.iblueit.com.br)
+
