@@ -1,3 +1,10 @@
+# Python (report-ai)
+report-ai/venv
+report-ai/__pycache__
+
+# Scripts de conveniência local
+run-backend.sh
+
 # Logs
 logs
 *.log
@@ -92,3 +99,6 @@ bin
 obj
 appsettings.json
 local.settings.json
+
+# Dumps locais de exportação de dados (não versionar)
+export-patient-data.json

@@ -190,3 +190,17 @@ exports.authenticateValidator = (authenticateReq) => {
 
     return validation;
 }
+
+exports.generateClinicalReportValidator = (generateClinicalReportReq) => {
+
+    let rules = {
+        device: ['required', { 'in': ['Pitaco', 'Manovacuômetro', 'Cinta'] }],
+        'period.start': 'required|date',
+        'period.end': 'required|date',
+    };
+
+    let validation = new Validator(generateClinicalReportReq, rules);
+    validation.check();
+
+    return validation;
+}
